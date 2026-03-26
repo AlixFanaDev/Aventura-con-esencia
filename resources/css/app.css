@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .will-change-transform-opacity {
+        will-change: transform, opacity;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .will-change-transform-opacity,
+    [style*='perspective'] {
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+    }
+}
+
+@theme {
+    --font-family-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+    --font-family-heading: 'Playfair Display', serif;
+
+    --color-primary: #8b4513;
+    --color-secondary: #d2691e;
+    --color-accent: #f4a261;
+    --color-cream: #fdf5e6;
+    --color-cream-dark: #f5e6d3;
+    --color-earth: #8b7355;
+    --color-dark: #1a1a1a;
+    --color-text-secondary: #6b7280;
+}
+
+@layer components {
+    .container-custom {
+        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    .section-padding {
+        @apply py-12 md:py-16 lg:py-20;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary/90;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center rounded-lg bg-accent px-6 py-3 font-semibold text-dark transition-colors hover:bg-accent/90;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center justify-center rounded-lg border-2 border-primary px-6 py-2 font-semibold text-primary transition-colors hover:bg-primary hover:text-white;
+    }
+
+    .card-hover {
+        @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+    }
+
+    .font-heading {
+        font-family: 'Playfair Display', serif;
+    }
+
+    .whatsapp-float {
+        @apply fixed right-6 bottom-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-transform hover:scale-110;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.8s ease-out forwards;
+    }
+
+    .stagger-2 {
+        animation-delay: 0.2s;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
