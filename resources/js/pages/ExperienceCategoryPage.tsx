@@ -40,7 +40,7 @@ const categoriesData: Record<string, Category> = {
             'Explora las montañas del Alto Atlas, los valles ocultos y los senderos ancestrales de Marruecos. Desde caminatas suaves hasta expediciones de varios días, descubre la naturaleza marroquí a pie. El atlas ofrece paisajes únicos, desde cascadas cristalinas hasta aldeas bereberes donde el tiempo parece detenido.',
         description_en:
             'Explore the High Atlas mountains, hidden valleys, and ancestral trails of Morocco. From gentle walks to multi-day expeditions, discover Moroccan nature on foot. The Atlas offers unique landscapes, from crystal-clear waterfalls to Berber villages where time seems to stand still.',
-        heroImage: '/images/trekking-atlas/trekking-atlas7.webp',
+        heroImage: '/images/trekking-atlas/trekking-atlas17.webp',
         color: '#2D6A4F',
     },
     desierto: {
@@ -73,7 +73,7 @@ const categoriesData: Record<string, Category> = {
             'Descubre la costa atlántica y mediterránea de Marruecos. Desde Essaouira con sus vientos ideales para surf y kitesurf, hasta bahías ocultas y pueblos pesqueros auténticos como El Jadida y Asilah. Disfruta de pescados frescos y atardeceres espectaculares sobre el océano.',
         description_en:
             'Discover the Atlantic and Mediterranean coasts of Morocco. From Essaouira with its ideal winds for surfing and kitesurfing, to hidden bays and authentic fishing villages like El Jadida and Asilah. Enjoy fresh fish and spectacular sunsets over the ocean.',
-        heroImage: '/images/essaouira/essaouira14.jpg',
+        heroImage: '/images/ouarzazate/ourzazate1.webp',
         color: '#457B9D',
     },
     montana: {
@@ -84,7 +84,7 @@ const categoriesData: Record<string, Category> = {
             'Desafía las cumbres más altas del norte de África. Desde la ascensión al Toubkal (4167m), la montaña más alta de Marruecos y del Magreb, hasta rutas de escalada en las gargantas del Dades y Todra. Las montañas del Atlas ofrecen experiencias únicas para montañeros de todos los niveles.',
         description_en:
             'Challenge the highest peaks in North Africa. From the ascent to Toubkal (4167m), the highest mountain in Morocco and the Maghreb, to climbing routes in the Dades and Todra gorges. The Atlas mountains offer unique experiences for climbers of all levels.',
-        heroImage: '/images/trekking-atlas/trekking-atlas5.webp',
+        heroImage: '/images/all/69dd8bea-cfc3-47f1-99d2-3aaa80e1fb82_toubkal-ascent-13671-feet-4167-meters-2-days.jpg',
         color: '#264653',
     },
     locales: {
@@ -124,7 +124,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 55,
             rating: 4.6,
             reviews_count: 43,
-            image: '/images/trekking-atlas/trekking-atlas2.webp',
+            image: '/images/all/IMG_5159-636x426.jpg',
         },
         {
             slug: 'valle-imlil',
@@ -136,7 +136,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 190,
             rating: 4.8,
             reviews_count: 52,
-            image: '/images/trekking-atlas/trekking-atlas17.webp',
+            image: '/images/trekking-atlas/trekking-atlas3.webp',
         },
         {
             slug: 'souss-massa',
@@ -148,7 +148,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 65,
             rating: 4.5,
             reviews_count: 28,
-            image: '/images/essaouira/essaouira14.jpg',
+            image: '/images/ouarzazate/ourzazate2.jpg',
         },
         {
             slug: 'tif-nou-ourika',
@@ -160,7 +160,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 50,
             rating: 4.7,
             reviews_count: 89,
-            image: '/images/trekking-atlas/trekking-atlas3.webp',
+            image: '/images/all/abdou-faiz-AWPNSJVIwkg-unsplash.jpg',
         },
         {
             slug: 'trek-marrakech-essaouira',
@@ -172,7 +172,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 450,
             rating: 4.9,
             reviews_count: 34,
-            image: '/images/trekking-atlas/trekking-atlas4.webp',
+            image: '/images/essaouira/essaouira4.jpg',
         },
     ],
     desierto: [
@@ -186,7 +186,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 180,
             rating: 4.8,
             reviews_count: 124,
-            image: '/images/merzouga/merzouga1.jpg',
+            image: '/images/all/anubhav-sonker-n_zto2eDb6s-unsplash.jpg',
         },
         {
             slug: 'noche-desierto',
@@ -222,7 +222,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 320,
             rating: 4.8,
             reviews_count: 67,
-            image: '/images/merzouga/merzouga1.jpg',
+            image: '/images/all/pixelraw-desert-4943467_1920.jpg',
         },
         {
             slug: 'atv-desierto',
@@ -234,7 +234,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 85,
             rating: 4.6,
             reviews_count: 92,
-            image: '/images/merzouga/merzouga1.jpg',
+            image: '/images/all/gemmmm-lqkHaP6P6nc-unsplash.jpg',
         },
         {
             slug: 'camel-trekking',
@@ -246,7 +246,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 280,
             rating: 4.9,
             reviews_count: 78,
-            image: '/images/merzouga/merzouga1.jpg',
+            image: '/images/all/pixelraw-desert-4944794_1920.jpg',
         },
     ],
     cultura: [
@@ -320,7 +320,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 55,
             rating: 4.7,
             reviews_count: 98,
-            image: '/images/marrakech/marrakech1.jpg',
+            image: '/images/marrakech/marrakech5.jpg',
         },
     ],
     costa: [
@@ -334,7 +334,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 65,
             rating: 4.7,
             reviews_count: 156,
-            image: '/images/essaouira/essaouira1.jpg',
+            image: '/images/essaouira/essaouira4.jpg',
         },
         {
             slug: 'sur-essaouira',
@@ -346,7 +346,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 45,
             rating: 4.9,
             reviews_count: 78,
-            image: '/images/essaouira/essaouira2.jpg',
+            image: '/images/all/loving-surf-essaouira.jpg',
         },
         {
             slug: 'kitesurf-essaouira',
@@ -358,7 +358,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 280,
             rating: 4.8,
             reviews_count: 42,
-            image: '/images/essaouira/essaouira4.jpg',
+            image: '/images/all/sejour-kitesurf-de-luxe-vagues-dakhla.jpg',
         },
         {
             slug: 'asilah',
@@ -394,7 +394,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 550,
             rating: 4.9,
             reviews_count: 67,
-            image: '/images/essaouira/essaouira1.jpg',
+            image: '/images/all/kitesurf-resort-dakhla-le-cercle-30.jpg',
         },
     ],
     montana: [
@@ -408,7 +408,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 220,
             rating: 5.0,
             reviews_count: 28,
-            image: '/images/trekking-atlas/trekking-atlas5.jpg',
+            image: '/images/trekking-atlas/trekking-atlas22.jpg',
         },
         {
             slug: 'valley-dades',
@@ -420,7 +420,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 165,
             rating: 4.7,
             reviews_count: 51,
-            image: '/images/trekking-atlas/trekking-atlas3.jpg',
+            image: '/images/all/gettyimages-96399743-612x612.jpg',
         },
         {
             slug: 'gorgas-todra',
@@ -432,7 +432,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 95,
             rating: 4.6,
             reviews_count: 67,
-            image: '/images/trekking-atlas/trekking-atlas3.jpg',
+            image: '/images/all/rigel-eR7AhcdD-qg-unsplash.jpg',
         },
         {
             slug: 'escalada-todra',
@@ -444,7 +444,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 180,
             rating: 4.8,
             reviews_count: 23,
-            image: '/images/trekking-atlas/trekking-atlas3.jpg',
+            image: '/images/trekking-atlas/trekking-atlas8.webp',
         },
         {
             slug: 'marrakech-toubkal-invierno',
@@ -456,7 +456,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 380,
             rating: 4.9,
             reviews_count: 15,
-            image: '/images/trekking-atlas/trekking-atlas5.jpg',
+            image: '/images/trekking-atlas/trekking-atlas20.jpg',
         },
         {
             slug: 'rifugio-toubkal',
@@ -468,7 +468,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 175,
             rating: 4.8,
             reviews_count: 45,
-            image: '/images/trekking-atlas/trekking-atlas5.jpg',
+            image: '/images/all/DSC01079-scaled.jpg',
         },
     ],
     locales: [
@@ -482,31 +482,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 55,
             rating: 4.9,
             reviews_count: 112,
-            image: '/images/marrakech/marrakech2.jpg',
-        },
-        {
-            slug: 'cena-familia',
-            title_es: 'Cena con Familia Local',
-            title_en: 'Dinner with Local Family',
-            destination: 'Marrakech',
-            difficulty: 'facil',
-            duration_days: 1,
-            price_from_usd: 40,
-            rating: 4.8,
-            reviews_count: 89,
-            image: '/images/marrakech/marrakech2.jpg',
-        },
-        {
-            slug: 'hammam',
-            title_es: 'Experiencia de Hammam Tradicional',
-            title_en: 'Traditional Hammam Experience',
-            destination: 'Marrakech',
-            difficulty: 'facil',
-            duration_days: 1,
-            price_from_usd: 35,
-            rating: 4.7,
-            reviews_count: 145,
-            image: '/images/marrakech/marrakech2.jpg',
+            image: '/images/ouarzazate/ourzazate8.jpg',
         },
         {
             slug: 'taller-zellige',
@@ -518,7 +494,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 65,
             rating: 4.9,
             reviews_count: 56,
-            image: '/images/marrakech/marrakech2.jpg',
+            image: '/images/aventura/🌱Primer_día_completo.jpg',
         },
         {
             slug: 'noche-berber',
@@ -530,7 +506,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 75,
             rating: 4.8,
             reviews_count: 92,
-            image: '/images/marrakech/marrakech2.jpg',
+            image: '/images/all/BerberDrummers.Morocco.IngaAksamit-749x564.jpg',
         },
         {
             slug: 'visita-berber',
@@ -542,7 +518,7 @@ const experiencesByCategory: Record<string, Experience[]> = {
             price_from_usd: 45,
             rating: 4.7,
             reviews_count: 134,
-            image: '/images/marrakech/marrakech2.jpg',
+            image: '/images/merzouga/merzouga5.jpg',
         },
     ],
 };
@@ -566,7 +542,7 @@ export default function ExperienceCategoryPage(props: PageProps) {
 
             {/* Hero */}
             <section className="relative flex h-[60vh] min-h-[400px] items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-dark" style={{ opacity: 0.5 }} />
+                <div className="absolute inset-0 z-10 bg-dark" style={{ opacity: 0.5 }} />
                 <img src={category.heroImage} alt={t(category.name_es, category.name_en)} className="absolute inset-0 h-full w-full object-cover" />
                 <div className="relative z-10 text-center text-white">
                     <h1 className="mb-4 font-heading text-5xl font-bold">{t(category.name_es, category.name_en)}</h1>

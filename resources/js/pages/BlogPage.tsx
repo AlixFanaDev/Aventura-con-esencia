@@ -140,8 +140,8 @@ export default function BlogPage(props: PageProps) {
 
             {/* Hero */}
             <section className="relative flex h-80 items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-dark" style={{ opacity: 0.5 }} />
-                <img src="/images/trekking-atlas/trekking-atlas1.webp" alt="Blog" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 z-10 bg-dark" style={{ opacity: 0.5 }} />
+                <img src="/images/all/sergey-pesterev-i-P1lmY_e1w-unsplash.jpg" alt="Blog" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="relative z-10 text-center text-white">
                     <h1 className="mb-4 font-heading text-5xl font-bold">{t('Blog de Viajes', 'Travel Blog')}</h1>
                     <p className="mx-auto max-w-2xl text-xl">

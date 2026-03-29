@@ -15,61 +15,14 @@ export default function ExperiencesPage(props: PageProps) {
     const t = (es: string, en: string) => (lang === 'es' ? es : en);
 
     const initialExperiences = props.experiences || experiencesData;
-    const categories = [
-        // Defined here as they are static data for filters
-        { id: 'desierto', label_es: 'Desierto', label_en: 'Desert', icon: 'sun', color: '#F4A261' },
-        { id: 'montana', label_es: 'Montaña', label_en: 'Mountain', icon: 'mountain', color: '#2D6A4F' },
-        { id: 'cultura', label_es: 'Cultura', label_en: 'Culture', icon: 'landmark', color: '#E76F51' },
-        { id: 'ciudad', label_es: 'Ciudad', label_en: 'City', icon: 'building', color: '#457B9D' },
-        { id: 'costa', label_es: 'Costa', label_en: 'Coast', icon: 'waves', color: '#A8DADC' },
-        { id: 'aventura', label_es: 'Aventura', label_en: 'Adventure', icon: 'compass', color: '#D62828' },
-    ];
-    const difficulties = [
-        // Defined here as they are static data for filters
-        { id: 'facil', label_es: 'Fácil', label_en: 'Easy', color: '#40916C' },
-        { id: 'moderado', label_es: 'Moderado', label_en: 'Moderate', color: '#F4A261' },
-        { id: 'dificil', label_es: 'Difícil', label_en: 'Difficult', color: '#E76F51' },
-        { id: 'extremo', label_es: 'Extremo', label_en: 'Extreme', color: '#D62828' },
-    ];
-    const destinations = ['Marrakech', 'Fez', 'Casablanca', 'Tangier', 'Rabat', 'Essaouira', 'Ouarzazate', 'Merzouga']; // Defined here as static data for filters
-
-    const [selectedCategory, setSelectedCategory] = useState<string>('');
-    const [selectedDestination, setSelectedDestination] = useState<string>('');
-    const [selectedDifficulty, setSelectedDifficulty] = useState<string>('');
-    const [selectedDuration, setSelectedDuration] = useState<string>('');
+  
     const [sortOption, setSortOption] = useState<string>('popular');
     const [filteredExperiences, setFilteredExperiences] = useState<Experience[]>(initialExperiences);
 
     useEffect(() => {
-        let currentFilteredExperiences = [...initialExperiences];
+        const currentFilteredExperiences = [...initialExperiences];
 
-        if (selectedCategory) {
-            currentFilteredExperiences = currentFilteredExperiences.filter((exp) => exp.category === selectedCategory);
-        }
-        if (selectedDestination) {
-            currentFilteredExperiences = currentFilteredExperiences.filter((exp) => exp.destination === selectedDestination);
-        }
-        if (selectedDifficulty) {
-            currentFilteredExperiences = currentFilteredExperiences.filter((exp) => exp.difficulty === selectedDifficulty);
-        }
-        if (selectedDuration) {
-            switch (selectedDuration) {
-                case '0.5':
-                    currentFilteredExperiences = currentFilteredExperiences.filter((exp) => exp.duration_days <= 0.5);
-                    break;
-                case '1':
-                    currentFilteredExperiences = currentFilteredExperiences.filter((exp) => exp.duration_days === 1);
-                    break;
-                case '2-3':
-                    currentFilteredExperiences = currentFilteredExperiences.filter((exp) => exp.duration_days >= 2 && exp.duration_days <= 3);
-                    break;
-                case '7':
-                    currentFilteredExperiences = currentFilteredExperiences.filter((exp) => exp.duration_days >= 7);
-                    break;
-                default:
-                    break;
-            }
-        }
+        
 
         switch (sortOption) {
             case 'price_asc':
@@ -88,7 +41,7 @@ export default function ExperiencesPage(props: PageProps) {
         }
 
         setFilteredExperiences(currentFilteredExperiences);
-    }, [selectedCategory, selectedDestination, selectedDifficulty, selectedDuration, sortOption, initialExperiences]);
+    }, [sortOption, initialExperiences]);
 
     return (
         <>
@@ -107,9 +60,9 @@ export default function ExperiencesPage(props: PageProps) {
             <Navbar lang={lang} />
 
             {/* Hero */}
-            <section className="relative flex h-80 items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-dark" style={{ opacity: 0.5 }} />
-                <img src="../images/trekking-atlas/trekking-atlas1.jpg" alt="Morocco" className="absolute inset-0 h-full w-full object-cover" />
+            <section className="relative flex h-100 items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-dark z-10" style={{ opacity: 0.5 }} />
+                <img src="/images/all/anubhav-sonker-n_zto2eDb6s-unsplash.jpg" alt="Morocco" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="relative z-10 text-center text-white">
                     <h1 className="mb-4 font-heading text-5xl font-bold">{t('Experiencias en Marruecos', 'Experiences in Morocco')}</h1>
                     <p className="mx-auto max-w-2xl text-xl">
@@ -121,75 +74,6 @@ export default function ExperiencesPage(props: PageProps) {
                 </div>
             </section>
 
-            {/* Filters */}
-            <section className="sticky top-20 z-30 bg-cream-dark py-8 shadow-sm">
-                <div className="container-custom">
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
-                        <div>
-                            <label className="mb-1 block text-sm text-text-secondary">{t('Categoría', 'Category')}</label>
-                            <select
-                                className="w-full rounded-lg border border-stone/20 bg-white p-3"
-                                value={selectedCategory}
-                                onChange={(e) => setSelectedCategory(e.target.value)}
-                            >
-                                <option value="">{t('Todas las categorías', 'All categories')}</option>
-                                {categories.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>
-                                        {t(cat.label_es, cat.label_en)}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="mb-1 block text-sm text-text-secondary">{t('Destino', 'Destination')}</label>
-                            <select
-                                className="w-full rounded-lg border border-stone/20 bg-white p-3"
-                                value={selectedDestination}
-                                onChange={(e) => setSelectedDestination(e.target.value)}
-                            >
-                                <option value="">{t('Todos los destinos', 'All destinations')}</option>
-                                {destinations.map((dest) => (
-                                    <option key={dest} value={dest}>
-                                        {dest}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="mb-1 block text-sm text-text-secondary">{t('Dificultad', 'Difficulty')}</label>
-                            <select
-                                className="w-full rounded-lg border border-stone/20 bg-white p-3"
-                                value={selectedDifficulty}
-                                onChange={(e) => setSelectedDifficulty(e.target.value)}
-                            >
-                                <option value="">{t('Todas', 'All')}</option>
-                                {difficulties.map((diff) => (
-                                    <option key={diff.id} value={diff.id}>
-                                        {t(diff.label_es, diff.label_en)}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="mb-1 block text-sm text-text-secondary">{t('Duración', 'Duration')}</label>
-                            <select
-                                className="w-full rounded-lg border border-stone/20 bg-white p-3"
-                                value={selectedDuration}
-                                onChange={(e) => setSelectedDuration(e.target.value)}
-                            >
-                                <option value="">{t('Cualquier duración', 'Any duration')}</option>
-                                <option value="0.5">{t('Medio día', 'Half day')}</option>
-                                <option value="1">{t('1 día', '1 day')}</option>
-                                <option value="2-3">{t('2-3 días', '2-3 days')}</option>
-                                <option value="7">{t('1 semana', '1 week')}</option>
-                            </select>
-                        </div>
-                        <div className="flex items-end">
-                            <button className="btn-primary w-full">{t('Filtrar', 'Filter')}</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Experiences Grid */}
             <section className="section-padding bg-cream">

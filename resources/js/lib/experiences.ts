@@ -17,7 +17,7 @@ export const experiencesData: Experience[] = [
         badge_es: 'Más popular',
         badge_en: 'Most Popular',
         badge_color: '#F4A261',
-        image: '/images/trekking-atlas/trekking-atlas1.webp',
+        image: '/images/all/69dd8bea-cfc3-47f1-99d2-3aaa80e1fb82_toubkal-ascent-13671-feet-4167-meters-2-days.jpg',
     },
     {
         id: '13',
@@ -31,7 +31,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 55,
         rating: 4.6,
         reviews_count: 43,
-        image: '/images/trekking-atlas/trekking-atlas2.webp',
+        image: '/images/all/IMG_5159-636x426.jpg',
     },
     {
         id: '14',
@@ -59,7 +59,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 65,
         rating: 4.5,
         reviews_count: 28,
-        image: '/images/essaouira/essaouira14.jpg',
+        image: '/images/all/kasbah-ait-ben-haddou-grande.pg_.jpg',
     },
     {
         id: '16',
@@ -73,7 +73,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 50,
         rating: 4.7,
         reviews_count: 89,
-        image: '/images/trekking-atlas/trekking-atlas3.webp',
+        image: '/images/all/IMG_5159-636x426.jpg',
     },
     {
         id: '17',
@@ -87,7 +87,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 450,
         rating: 4.9,
         reviews_count: 34,
-        image: '/images/trekking-atlas/trekking-atlas4.webp',
+        image: '/images/all/DSC01079-scaled.jpg',
     },
 
     // DESIERTO (6)
@@ -162,7 +162,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 85,
         rating: 4.6,
         reviews_count: 92,
-        image: '/images/merzouga/merzouga1.jpg',
+        image: '/images/all/ciprian-stoenescu-PTFwr_PL--w-unsplash.jpg',
     },
     {
         id: '21',
@@ -176,7 +176,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 280,
         rating: 4.9,
         reviews_count: 78,
-        image: '/images/merzouga/merzouga1.jpg',
+        image: '/images/all/pixelraw-desert-4944794_1920.jpg',
     },
 
     // CULTURA (6)
@@ -262,7 +262,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 55,
         rating: 4.7,
         reviews_count: 98,
-        image: '/images/marrakech/marrakech1.jpg',
+        image: '/images/marrakech/marrakech9.jpg',
     },
 
     // COSTA (6)
@@ -292,7 +292,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 45,
         rating: 4.9,
         reviews_count: 78,
-        image: '/images/essaouira/essaouira2.jpg',
+        image: '/images/essaouira/essaouira18.jpg',
     },
     {
         id: '12',
@@ -306,7 +306,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 280,
         rating: 4.8,
         reviews_count: 42,
-        image: '/images/essaouira/essaouira4.jpg',
+        image: '/images/all/sejour-kitesurf-de-luxe-vagues-dakhla.jpg',
     },
     {
         id: '26',
@@ -348,7 +348,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 550,
         rating: 4.9,
         reviews_count: 67,
-        image: '/images/essaouira/essaouira1.jpg',
+        image: '/images/all/kitesurf-resort-dakhla-le-cercle-30.jpg',
     },
 
     // MONTANA (6)
@@ -367,7 +367,7 @@ export const experiencesData: Experience[] = [
         badge_es: 'Para expertos',
         badge_en: 'For experts',
         badge_color: '#D62828',
-        image: '/images/trekking-atlas/trekking-atlas5.jpg',
+        image: '/images/all/69dd8bea-cfc3-47f1-99d2-3aaa80e1fb82_toubkal-ascent-13671-feet-4167-meters-2-days.jpg',
     },
     {
         id: '8',
@@ -381,7 +381,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 165,
         rating: 4.7,
         reviews_count: 51,
-        image: '/images/trekking-atlas/trekking-atlas3.jpg',
+        image: '/images/all/gettyimages-96399743-612x612.jpg',
     },
     {
         id: '29',
@@ -395,7 +395,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 95,
         rating: 4.6,
         reviews_count: 67,
-        image: '/images/trekking-atlas/trekking-atlas3.jpg',
+        image: '/images/all/rigel-eR7AhcdD-qg-unsplash.jpg',
     },
     {
         id: '30',
@@ -409,7 +409,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 180,
         rating: 4.8,
         reviews_count: 23,
-        image: '/images/trekking-atlas/trekking-atlas3.jpg',
+        image: 'images/ouarzazate/ourzazate9.jpg',
     },
     {
         id: '31',
@@ -423,7 +423,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 380,
         rating: 4.9,
         reviews_count: 15,
-        image: '/images/trekking-atlas/trekking-atlas5.jpg',
+        image: '/images/all/TREKKING-TOUBKAL-02_01.jpg',
     },
     {
         id: '32',
@@ -437,7 +437,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 175,
         rating: 4.8,
         reviews_count: 45,
-        image: '/images/trekking-atlas/trekking-atlas5.jpg',
+        image: '/images/trekking-atlas/trekking-atlas9.webp',
     },
 
     // LOCALES (6)
@@ -453,36 +453,9 @@ export const experiencesData: Experience[] = [
         price_from_usd: 55,
         rating: 4.9,
         reviews_count: 112,
-        image: '/images/marrakech/marrakech2.jpg',
+        image: '/images/merzouga/merzouga8.webp',
     },
-    {
-        id: '33',
-        slug: 'cena-familia',
-        title_es: 'Cena con Familia Local',
-        title_en: 'Dinner with Local Family',
-        category: 'locales',
-        destination: 'Marrakech',
-        difficulty: 'facil',
-        duration_days: 1,
-        price_from_usd: 40,
-        rating: 4.8,
-        reviews_count: 89,
-        image: '/images/marrakech/marrakech2.jpg',
-    },
-    {
-        id: '34',
-        slug: 'hammam',
-        title_es: 'Experiencia de Hammam Tradicional',
-        title_en: 'Traditional Hammam Experience',
-        category: 'locales',
-        destination: 'Marrakech',
-        difficulty: 'facil',
-        duration_days: 1,
-        price_from_usd: 35,
-        rating: 4.7,
-        reviews_count: 145,
-        image: '/images/marrakech/marrakech2.jpg',
-    },
+   
     {
         id: '35',
         slug: 'taller-zellige',
@@ -495,7 +468,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 65,
         rating: 4.9,
         reviews_count: 56,
-        image: '/images/marrakech/marrakech2.jpg',
+        image: '/images/aventura/🌱Primer_día_completo.jpg',
     },
     {
         id: '36',
@@ -509,7 +482,7 @@ export const experiencesData: Experience[] = [
         price_from_usd: 75,
         rating: 4.8,
         reviews_count: 92,
-        image: '/images/marrakech/marrakech2.jpg',
+        image: '/images/all/BerberDrummers.Morocco.IngaAksamit-749x564.jpg',
     },
     {
         id: '37',
@@ -523,6 +496,6 @@ export const experiencesData: Experience[] = [
         price_from_usd: 45,
         rating: 4.7,
         reviews_count: 134,
-        image: '/images/marrakech/marrakech2.jpg',
+        image: '/images/merzouga/merzouga5.jpg',
     },
 ];
