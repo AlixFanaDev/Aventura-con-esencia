@@ -247,7 +247,7 @@ export default function Navbar({
 
                     {/* Mobile Toggle */}
                     <button
-                        className="relative h-10 w-10 rounded-xl bg-stone-100 text-dark transition-colors hover:bg-stone-200 lg:hidden"
+                        className="relative h-10 w-10 rounded-xl bg-stone-100 z-60 text-dark transition-colors hover:bg-stone-200 lg:hidden"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >

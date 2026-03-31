@@ -65,6 +65,10 @@ Route::get('/cookies', function () {
     return Inertia::render('CookiesPage');
 })->name('cookies');
 
+Route::get('/test-model', function () {
+    return Inertia::render('TestModalPage');
+})->name('testModel');
+
 Route::get('/cancelacion', function () {
     return Inertia::render('CancellationPage');
 })->name('cancellation');

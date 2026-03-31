@@ -1,7 +1,9 @@
 import { Head, Link } from '@inertiajs/react';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import NewsletterToast from '@/components/NewsletterToast';
+import { postNewsletterSubscribe, postNewsletterUnsubscribe, showNewsletterToast } from '@/lib/newsletter';
 const aventura1 = '/images/aventura/From_the_team.jpg';
 const aventura2 = '/images/aventura/🌍Hoy_queremos.jpg';
 const aventura3 = '/images/aventura/🌱Primer_día_completo.jpg';
@@ -37,6 +39,11 @@ interface HomePageProps {
 export default function HomePage(props: HomePageProps) {
     const lang = props.lang || 'es';
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [newsletterEmail, setNewsletterEmail] = useState('');
+    const [newsletterLoading, setNewsletterLoading] = useState(false);
+    const [unsubscribeEmail, setUnsubscribeEmail] = useState('');
+    const [unsubscribeLoading, setUnsubscribeLoading] = useState(false);
+    const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
     const t = (es: string, en: string) => (lang === 'es' ? es : en);
 
@@ -533,14 +540,61 @@ export default function HomePage(props: HomePageProps) {
                             'Receive inspiration, exclusive offers and travel guides to Morocco directly in your inbox.',
                         )}
                     </p>
-                    <form className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row">
+                    <form
+                        className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row"
+                        onSubmit={async (e: FormEvent<HTMLFormElement>) => {
+                            e.preventDefault();
+
+                            if (!newsletterEmail || newsletterLoading) return;
+
+                            setNewsletterLoading(true);
+
+                            try {
+                                const result = await postNewsletterSubscribe({ email: newsletterEmail, name: '' });
+
+                                if (result.ok) {
+                                    showNewsletterToast(setToast, {
+                                        message:
+                                            result.message ||
+                                            t('Te has suscrito al newsletter.', 'You have subscribed to the newsletter.'),
+                                        type: 'success',
+                                    });
+                                    setNewsletterEmail('');
+                                } else {
+                                    showNewsletterToast(setToast, {
+                                        message:
+                                            result.message ||
+                                            t(
+                                                'No se ha podido completar la suscripción. Inténtalo de nuevo.',
+                                                'Subscription could not be completed. Please try again.',
+                                            ),
+                                        type: 'error',
+                                    });
+                                }
+                            } catch {
+                                showNewsletterToast(setToast, {
+                                    message: t(
+                                        'Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.',
+                                        'An unexpected error occurred. Please try again later.',
+                                    ),
+                                    type: 'error',
+                                });
+                            } finally {
+                                setNewsletterLoading(false);
+                            }
+                        }}
+                    >
                         <input
                             type="email"
                             placeholder={t('Tu correo electrónico', 'Your email address')}
                             className="text-dark focus:ring-accent flex-1 rounded-lg bg-white px-4 py-3 focus:border-transparent focus:ring-2"
+                            value={newsletterEmail}
+                            onChange={(event) => setNewsletterEmail(event.target.value)}
                         />
-                        <button type="submit" className="btn-secondary whitespace-nowrap">
-                            {t('Suscribirme', 'Subscribe')}
+                        <button type="submit" className="btn-secondary whitespace-nowrap" disabled={newsletterLoading}>
+                            {newsletterLoading
+                                ? t('Suscribiendo...', 'Subscribing...')
+                                : t('Suscribirme', 'Subscribe')}
                         </button>
                     </form>
                     <p className="text-stone-light mt-4 text-sm">
@@ -549,6 +603,77 @@ export default function HomePage(props: HomePageProps) {
                             'No spam. Just adventures. You can unsubscribe anytime.',
                         )}
                     </p>
+
+                    <details className="mx-auto mt-6 max-w-md text-left">
+                        <summary className="cursor-pointer text-sm text-stone-light underline-offset-2 hover:underline">
+                            {t('Darte de baja de la lista', 'Unsubscribe from the list')}
+                        </summary>
+                        <form
+                            className="mt-4 flex flex-col gap-3 sm:flex-row"
+                            onSubmit={async (e: FormEvent<HTMLFormElement>) => {
+                                e.preventDefault();
+
+                                if (!unsubscribeEmail || unsubscribeLoading) return;
+
+                                setUnsubscribeLoading(true);
+
+                                try {
+                                    const result = await postNewsletterUnsubscribe({ email: unsubscribeEmail });
+
+                                    if (result.ok) {
+                                        showNewsletterToast(setToast, {
+                                            message:
+                                                result.message ||
+                                                t(
+                                                    'Te has dado de baja del newsletter.',
+                                                    'You have been unsubscribed from the newsletter.',
+                                                ),
+                                            type: 'success',
+                                        });
+                                        setUnsubscribeEmail('');
+                                    } else {
+                                        showNewsletterToast(setToast, {
+                                            message:
+                                                result.message ||
+                                                t(
+                                                    'No se ha podido completar la baja. Comprueba el correo.',
+                                                    'Unsubscribe could not be completed. Check the email address.',
+                                                ),
+                                            type: 'error',
+                                        });
+                                    }
+                                } catch {
+                                    showNewsletterToast(setToast, {
+                                        message: t(
+                                            'Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.',
+                                            'An unexpected error occurred. Please try again later.',
+                                        ),
+                                        type: 'error',
+                                    });
+                                } finally {
+                                    setUnsubscribeLoading(false);
+                                }
+                            }}
+                        >
+                            <input
+                                type="email"
+                                required
+                                placeholder={t('Correo suscrito', 'Subscribed email')}
+                                className="text-dark focus:ring-accent flex-1 rounded-lg bg-white px-4 py-3 text-sm focus:border-transparent focus:ring-2"
+                                value={unsubscribeEmail}
+                                onChange={(event) => setUnsubscribeEmail(event.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                className="rounded-lg border border-white/40 bg-transparent px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                                disabled={unsubscribeLoading}
+                            >
+                                {unsubscribeLoading
+                                    ? t('Procesando...', 'Processing...')
+                                    : t('Darme de baja', 'Unsubscribe')}
+                            </button>
+                        </form>
+                    </details>
                 </div>
             </section>
 
@@ -558,6 +683,8 @@ export default function HomePage(props: HomePageProps) {
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
             </a>
+
+            <NewsletterToast toast={toast} />
 
             <Footer lang={lang} />
         </>

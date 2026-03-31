@@ -1,6 +1,9 @@
 import { Head, Link } from '@inertiajs/react';
+import { FormEvent, useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import NewsletterToast from '@/components/NewsletterToast';
+import { postNewsletterSubscribe, postNewsletterUnsubscribe, showNewsletterToast } from '@/lib/newsletter';
 
 interface BlogPost {
     id: string;
@@ -115,6 +118,12 @@ export default function BlogPage(props: PageProps) {
     const t = (es: string, en: string) => (lang === 'es' ? es : en);
     const posts = props.posts || blogPosts;
 
+    const [newsletterEmail, setNewsletterEmail] = useState('');
+    const [newsletterLoading, setNewsletterLoading] = useState(false);
+    const [unsubscribeEmail, setUnsubscribeEmail] = useState('');
+    const [unsubscribeLoading, setUnsubscribeLoading] = useState(false);
+    const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
     const categories = [
         { id: 'all', label_es: 'Todos', label_en: 'All' },
         { id: 'consejos', label_es: 'Consejos de Viaje', label_en: 'Travel Tips' },
@@ -221,18 +230,136 @@ export default function BlogPage(props: PageProps) {
                             'Receive the latest articles and travel tips directly in your email',
                         )}
                     </p>
-                    <form className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
+                    <form
+                        className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
+                        onSubmit={async (e: FormEvent<HTMLFormElement>) => {
+                            e.preventDefault();
+
+                            if (!newsletterEmail || newsletterLoading) return;
+
+                            setNewsletterLoading(true);
+
+                            try {
+                                const result = await postNewsletterSubscribe({ email: newsletterEmail, name: '' });
+
+                                if (result.ok) {
+                                    showNewsletterToast(setToast, {
+                                        message:
+                                            result.message ||
+                                            t('Te has suscrito al newsletter.', 'You have subscribed to the newsletter.'),
+                                        type: 'success',
+                                    });
+                                    setNewsletterEmail('');
+                                } else {
+                                    showNewsletterToast(setToast, {
+                                        message:
+                                            result.message ||
+                                            t(
+                                                'No se ha podido completar la suscripción. Inténtalo de nuevo.',
+                                                'Subscription could not be completed. Please try again.',
+                                            ),
+                                        type: 'error',
+                                    });
+                                }
+                            } catch {
+                                showNewsletterToast(setToast, {
+                                    message: t(
+                                        'Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.',
+                                        'An unexpected error occurred. Please try again later.',
+                                    ),
+                                    type: 'error',
+                                });
+                            } finally {
+                                setNewsletterLoading(false);
+                            }
+                        }}
+                    >
                         <input
                             type="email"
                             placeholder={t('Tu correo electrónico', 'Your email')}
-                            className="flex-1 rounded-lg px-4 py-3 text-dark bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary"
+                            className="flex-1 rounded-lg bg-white/90 px-4 py-3 text-dark focus:ring-2 focus:ring-primary focus:outline-none"
+                            value={newsletterEmail}
+                            onChange={(event) => setNewsletterEmail(event.target.value)}
                         />
-                        <button type="submit" className="btn-secondary">
-                            {t('Suscribirse', 'Subscribe')}
+                        <button type="submit" className="btn-secondary" disabled={newsletterLoading}>
+                            {newsletterLoading ? t('Suscribiendo...', 'Subscribing...') : t('Suscribirse', 'Subscribe')}
                         </button>
                     </form>
+
+                    <details className="mx-auto mt-6 max-w-md text-left">
+                        <summary className="cursor-pointer text-sm text-white/80 underline-offset-2 hover:underline">
+                            {t('Darte de baja de la lista', 'Unsubscribe from the list')}
+                        </summary>
+                        <form
+                            className="mt-4 flex flex-col gap-3 sm:flex-row"
+                            onSubmit={async (e: FormEvent<HTMLFormElement>) => {
+                                e.preventDefault();
+
+                                if (!unsubscribeEmail || unsubscribeLoading) return;
+
+                                setUnsubscribeLoading(true);
+
+                                try {
+                                    const result = await postNewsletterUnsubscribe({ email: unsubscribeEmail });
+
+                                    if (result.ok) {
+                                        showNewsletterToast(setToast, {
+                                            message:
+                                                result.message ||
+                                                t(
+                                                    'Te has dado de baja del newsletter.',
+                                                    'You have been unsubscribed from the newsletter.',
+                                                ),
+                                            type: 'success',
+                                        });
+                                        setUnsubscribeEmail('');
+                                    } else {
+                                        showNewsletterToast(setToast, {
+                                            message:
+                                                result.message ||
+                                                t(
+                                                    'No se ha podido completar la baja. Comprueba el correo.',
+                                                    'Unsubscribe could not be completed. Check the email address.',
+                                                ),
+                                            type: 'error',
+                                        });
+                                    }
+                                } catch {
+                                    showNewsletterToast(setToast, {
+                                        message: t(
+                                            'Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.',
+                                            'An unexpected error occurred. Please try again later.',
+                                        ),
+                                        type: 'error',
+                                    });
+                                } finally {
+                                    setUnsubscribeLoading(false);
+                                }
+                            }}
+                        >
+                            <input
+                                type="email"
+                                required
+                                placeholder={t('Correo suscrito', 'Subscribed email')}
+                                className="flex-1 rounded-lg bg-white/90 px-4 py-3 text-sm text-dark focus:ring-2 focus:ring-primary focus:outline-none"
+                                value={unsubscribeEmail}
+                                onChange={(event) => setUnsubscribeEmail(event.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                className="rounded-lg border border-white/50 bg-transparent px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                                disabled={unsubscribeLoading}
+                            >
+                                {unsubscribeLoading
+                                    ? t('Procesando...', 'Processing...')
+                                    : t('Darme de baja', 'Unsubscribe')}
+                            </button>
+                        </form>
+                    </details>
                 </div>
             </section>
+
+            <NewsletterToast toast={toast} />
 
             <Footer lang={lang} />
         </>
