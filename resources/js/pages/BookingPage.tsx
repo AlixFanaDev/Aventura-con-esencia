@@ -1,13 +1,19 @@
 import { Head, Link, useForm } from '@inertiajs/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import { experiencesData } from '@/lib/experiences'; // Import experiencesData
-import type { Experience } from '@/types'; // Import Experience interface
+import { experiencesData } from '@/lib/experiences';
+import type { Experience } from '@/types';
 
 interface PageProps {
     lang?: 'es' | 'en';
     experience?: Experience;
+    flash?: {
+        success?: string;
+        error?: string;
+        warning?: string;
+        info?: string;
+    };
 }
 
 export default function BookingPage(props: PageProps) {
@@ -25,21 +31,23 @@ export default function BookingPage(props: PageProps) {
         notes: '',
     });
 
-    const experiences = experiencesData; // Use imported experiencesData
+    useEffect(() => {
+        if (props.flash?.success) {
+            setBookingReference(
+                `ACE-2024-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
+            );
+            setStep(4);
+        }
+    }, [props.flash?.success]);
+
+    const experiences = experiencesData;
 
     const selectedExperience = experiences.find((e) => e.id === data.experience);
     const totalPrice = selectedExperience ? selectedExperience.price_from_usd * data.participants : 0;
 
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/booking', {
-            onSuccess: () => {
-                setBookingReference(
-                    `ACE-2024-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
-                );
-                setStep(4);
-            },
-        });
+        post('/booking');
     };
 
     return (

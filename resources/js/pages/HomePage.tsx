@@ -1,39 +1,18 @@
 import { Head, Link } from '@inertiajs/react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import NewsletterToast from '@/components/NewsletterToast';
 import { postNewsletterSubscribe, postNewsletterUnsubscribe, showNewsletterToast } from '@/lib/newsletter';
-const aventura1 = '/images/aventura/From_the_team.jpg';
-const aventura2 = '/images/aventura/🌍Hoy_queremos.jpg';
-const aventura3 = '/images/aventura/🌱Primer_día_completo.jpg';
-const aventura4 = '/images/aventura/📸Memorias_del_desierto.jpg';
-
-const toubkal = '/images/trekking-atlas/trekking-atlas9.webp';
-
-const tinghir = '/images/trekking-atlas/trekking-atlas24.jpg';
-
-const merzouga = '/images/merzouga/merzouga1.jpg';
-
-const fes = '/images/fes/fes3.webp';
-
-const essaouira = '/images/essaouira/essaouira15.jpg';
-
-const casaYRabat = '/images/casa & rabat/rabat1.jpg';
-
-const desMarrakeck = '/images/marrakech/marrakech1.jpg';
-const desFes = '/images/fes/fes13.webp';
-const desCasa = '/images/casa & rabat/casa1.jpg';
-const desEssaouira = '/images/essaouira/essaouira4.jpg';
-const desOuarzazate = '/images/ouarzazate/ourzazate1.webp';
-const desMerzouga = '/images/merzouga/merzouga7.jpg';
-
-const bloMarrakech = '/images/marrakech/marrakech6.jpg';
-const bloTrekking = '/images/trekking-atlas/trekking-atlas13.webp';
-const bloMerzouga = '/images/merzouga/merzouga10.jpg';
 
 interface HomePageProps {
     lang?: 'es' | 'en';
+    flash?: {
+        success?: string;
+        error?: string;
+        warning?: string;
+        info?: string;
+    };
 }
 
 export default function HomePage(props: HomePageProps) {
@@ -44,6 +23,19 @@ export default function HomePage(props: HomePageProps) {
     const [unsubscribeEmail, setUnsubscribeEmail] = useState('');
     const [unsubscribeLoading, setUnsubscribeLoading] = useState(false);
     const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+    useEffect(() => {
+        if (props.flash?.success) {
+            setToast({ message: props.flash.success, type: 'success' });
+            const timer = setTimeout(() => setToast(null), 5000);
+            return () => clearTimeout(timer);
+        }
+        if (props.flash?.error) {
+            setToast({ message: props.flash.error, type: 'error' });
+            const timer = setTimeout(() => setToast(null), 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [props.flash?.success, props.flash?.error]);
 
     const t = (es: string, en: string) => (lang === 'es' ? es : en);
 

@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import NewsletterToast from '@/components/NewsletterToast';
@@ -111,6 +111,12 @@ const blogPosts: BlogPost[] = [
 interface PageProps {
     lang?: 'es' | 'en';
     posts?: BlogPost[];
+    flash?: {
+        success?: string;
+        error?: string;
+        warning?: string;
+        info?: string;
+    };
 }
 
 export default function BlogPage(props: PageProps) {
@@ -123,6 +129,19 @@ export default function BlogPage(props: PageProps) {
     const [unsubscribeEmail, setUnsubscribeEmail] = useState('');
     const [unsubscribeLoading, setUnsubscribeLoading] = useState(false);
     const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+    useEffect(() => {
+        if (props.flash?.success) {
+            setToast({ message: props.flash.success, type: 'success' });
+            const timer = setTimeout(() => setToast(null), 5000);
+            return () => clearTimeout(timer);
+        }
+        if (props.flash?.error) {
+            setToast({ message: props.flash.error, type: 'error' });
+            const timer = setTimeout(() => setToast(null), 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [props.flash?.success, props.flash?.error]);
 
     const categories = [
         { id: 'all', label_es: 'Todos', label_en: 'All' },

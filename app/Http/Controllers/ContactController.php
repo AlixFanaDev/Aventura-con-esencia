@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactRequest;
 use App\Services\ContactService;
+use Inertia\Inertia;
 
 class ContactController extends Controller
 {
@@ -13,13 +14,18 @@ class ContactController extends Controller
 
     public function store(StoreContactRequest $request)
     {
+        $subject = $request->experience 
+            ? 'Contact Request: ' . ucfirst($request->experience)
+            : 'General Contact Request';
+
         $contactMessage = $this->contactService->createMessage([
             'name' => $request->name,
             'email' => $request->email,
-            'subject' => $request->subject,
+            'subject' => $subject,
             'message' => $request->message,
         ]);
 
-        return response()->json(['message' => 'Contact message received successfully!', 'id' => $contactMessage->id]);
+        return back()->with('success', 'Contact message received successfully!');
     }
 }
+

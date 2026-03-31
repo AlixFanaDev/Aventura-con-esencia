@@ -4,13 +4,15 @@ test('booking page loads successfully', function () {
     $response = $this->get(route('booking'));
 
     $response->assertOk();
+    $response->assertInertia(fn ($page) => $page
+        ->component('BookingPage')
+        ->has('flash')
+    );
 });
 
-test('booking store creates a new booking', function () {
-    $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class);
-
+test('booking store creates a new booking and returns redirect with flash', function () {
     $bookingData = [
-        'experience' => '1',
+        'experience' => 'trekking-atlas',
         'date' => '2026-03-15',
         'participants' => 2,
         'name' => 'John Doe',
@@ -21,11 +23,11 @@ test('booking store creates a new booking', function () {
 
     $response = $this->post(route('booking.store'), $bookingData);
 
-    $response->assertStatus(200)
-        ->assertJsonStructure(['message', 'booking']);
+    $response->assertRedirect();
+    $response->assertSessionHas('success');
 
     $this->assertDatabaseHas('bookings', [
-        'experience_id' => '1',
+        'experience_id' => 'trekking-atlas',
         'num_travelers' => 2,
         'name' => 'John Doe',
         'email' => 'john@example.com',
@@ -33,19 +35,14 @@ test('booking store creates a new booking', function () {
 });
 
 test('booking store validation fails with missing required fields', function () {
-    $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class);
+    $response = $this->post(route('booking.store'), []);
 
-    $response = $this->withHeaders(['Accept' => 'application/json'])
-        ->post(route('booking.store'), []);
-
-    $response->assertStatus(422);
+    $response->assertSessionHasErrors(['experience', 'date', 'participants', 'name', 'email', 'phone']);
 });
 
 test('booking store validation fails with invalid email', function () {
-    $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class);
-
     $bookingData = [
-        'experience' => '1',
+        'experience' => 'trekking-atlas',
         'date' => '2026-03-15',
         'participants' => 2,
         'name' => 'John Doe',
@@ -53,17 +50,14 @@ test('booking store validation fails with invalid email', function () {
         'phone' => '+1234567890',
     ];
 
-    $response = $this->withHeaders(['Accept' => 'application/json'])
-        ->post(route('booking.store'), $bookingData);
+    $response = $this->post(route('booking.store'), $bookingData);
 
-    $response->assertStatus(422);
+    $response->assertSessionHasErrors('email');
 });
 
 test('booking store validation fails with invalid participants', function () {
-    $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class);
-
     $bookingData = [
-        'experience' => '1',
+        'experience' => 'trekking-atlas',
         'date' => '2026-03-15',
         'participants' => 0,
         'name' => 'John Doe',
@@ -71,8 +65,7 @@ test('booking store validation fails with invalid participants', function () {
         'phone' => '+1234567890',
     ];
 
-    $response = $this->withHeaders(['Accept' => 'application/json'])
-        ->post(route('booking.store'), $bookingData);
+    $response = $this->post(route('booking.store'), $bookingData);
 
-    $response->assertStatus(422);
+    $response->assertSessionHasErrors('participants');
 });

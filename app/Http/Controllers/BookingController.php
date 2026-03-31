@@ -27,6 +27,6 @@ class BookingController extends Controller
 
         $this->emailService->sendBookingConfirmation($booking);
 
-        return response()->json(['message' => 'Booking created successfully!', 'booking' => $booking]);
+        return back()->with('success', 'Booking created successfully!');
     }
 }

@@ -19,13 +19,13 @@ class NewsletterController extends Controller
             'name' => $request->name,
         ]);
 
-        return response()->json(['message' => 'Successfully subscribed to newsletter!']);
+        return back()->with('success', 'Successfully subscribed to newsletter!');
     }
 
     public function unsubscribe(UnsubscribeNewsletterRequest $request)
     {
         $this->newsletterService->unsubscribe($request->email);
 
-        return response()->json(['message' => 'Successfully unsubscribed from newsletter.']);
+        return back()->with('success', 'Successfully unsubscribed from newsletter.');
     }
 }
