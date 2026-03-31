@@ -103,7 +103,7 @@ export default function ContactPage(props: PageProps) {
                 <div className="container-custom">
                     <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
                         {/* Contact Form */}
-                        <div className="rounded-xl bg-white dark:bg-gray-900 p-8 shadow-lg dark:shadow-dark/20 transition-all hover:shadow-xl">
+                        <div className="rounded-xl bg-accent/50 p-8 shadow-lg dark:shadow-dark/20 transition-all hover:shadow-xl">
                             <h2 className="font-heading mb-6 text-2xl font-bold text-dark dark:text-white">{t('Envíanos un mensaje', 'Send us a message')}</h2>
                             {showSuccess && (
                                 <SuccessCard
@@ -121,12 +121,12 @@ export default function ContactPage(props: PageProps) {
                             {!showSuccess && (
                             <form onSubmit={submit} className="space-y-6">
                                 <div>
-                                    <label className="mb-2 block text-sm font-semibold text-dark dark:text-gray-200">
+                                    <label className="mb-2 block text-sm font-semibold text-primary dark:text-gray-200">
                                         {t('Nombre completo', 'Full name')} <span className="text-red-500">*</span>
                                     </label>
                                     <input
                                         type="text"
-                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-dark dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white bg-amber-100 px-4 py-3 text-dark dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                                         placeholder={t('Tu nombre', 'Your name')}
                                         value={data.name}
                                         onChange={(e) => setData({ ...data, name: e.target.value })}
@@ -137,7 +137,7 @@ export default function ContactPage(props: PageProps) {
                                     <label className="mb-2 block text-sm font-semibold text-dark dark:text-gray-200">{t('Correo electrónico', 'Email')} <span className="text-red-500">*</span></label>
                                     <input
                                         type="email"
-                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-dark dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white bg-amber-100 px-4 py-3 text-dark dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                                         placeholder={t('tu@email.com', 'your@email.com')}
                                         value={data.email}
                                         onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -150,7 +150,7 @@ export default function ContactPage(props: PageProps) {
                                     </label>
                                     <input
                                         type="tel"
-                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-dark dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white bg-amber-100 px-4 py-3 text-dark dark:earth placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                                         placeholder="+212 6XX XXX XXX"
                                         value={data.phone}
                                         onChange={(e) => setData({ ...data, phone: e.target.value })}
@@ -158,11 +158,11 @@ export default function ContactPage(props: PageProps) {
                                     {errors.phone && <FormError message={errors.phone} />}
                                 </div>
                                 <div>
-                                    <label className="mb-2 block text-sm font-semibold text-dark dark:text-gray-200">
+                                    <label className="mb-2 block text-sm font-semibold text-dark dark:earth">
                                         {t('¿En qué experiencia estás interesado?', 'Which experience are you interested in?')}
                                     </label>
                                     <select
-                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-dark dark:text-white transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white bg-amber-100 px-4 py-3 text-dark dark:text-white transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                                         value={data.experience}
                                         onChange={(e) => setData({ ...data, experience: e.target.value })}
                                     >
@@ -178,7 +178,7 @@ export default function ContactPage(props: PageProps) {
                                 <div>
                                     <label className="mb-2 block text-sm font-semibold text-dark dark:text-gray-200">{t('Mensaje', 'Message')} <span className="text-red-500">*</span></label>
                                     <textarea
-                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-dark dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"
+                                        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white bg-amber-100 px-4 py-3 text-dark dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"
                                         rows={5}
                                         placeholder={t('Cuéntanos sobre tu aventura soñada...', 'Tell us about your dream adventure...')}
                                         value={data.message}
@@ -186,9 +186,9 @@ export default function ContactPage(props: PageProps) {
                                     />
                                     {errors.message && <FormError message={errors.message} />}
                                 </div>
-                                <button 
-                                    type="submit" 
-                                    className="w-full rounded-lg bg-primary hover:bg-primary/90 dark:bg-primary/80 dark:hover:bg-primary px-6 py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" 
+                                <button
+                                    type="submit"
+                                    className="w-full rounded-lg bg-primary hover:bg-primary/90 dark:bg-primary/80 dark:hover:bg-primary px-6 py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                     disabled={processing}
                                 >
                                     {processing ? t('Enviando...', 'Sending...') : t('Enviar mensaje', 'Send message')}
@@ -199,7 +199,7 @@ export default function ContactPage(props: PageProps) {
 
                         {/* Contact Info */}
                         <div>
-                            <div className="mb-6 rounded-xl bg-white dark:bg-gray-900 p-8 shadow-lg dark:shadow-dark/20 transition-all hover:shadow-xl">
+                            <div className="mb-6 rounded-xl bg-accent/50 p-8 shadow-lg dark:shadow-dark/20 transition-all hover:shadow-xl">
                                 <h2 className="font-heading mb-6 text-2xl font-bold text-dark dark:text-white">{t('Información de contacto', 'Contact information')}</h2>
                                 <div className="space-y-4">
                                     <div className="flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">

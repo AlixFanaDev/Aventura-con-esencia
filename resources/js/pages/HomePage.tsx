@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
-import type { FormEvent} from 'react';
+import type { FormEvent } from 'react';
 import { useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -40,7 +40,12 @@ export default function HomePage(props: HomePageProps) {
 
     const t = (es: string, en: string) => (lang === 'es' ? es : en);
 
-    const heroImages = [aventura1, aventura2, aventura3, aventura4];
+    const heroImages = [
+        '/images/merzouga/merzouga1.jpg',
+        '/images/trekking-atlas/trekking-atlas1.webp',
+        '/images/marrakech/marrakech1.jpg',
+        '/images/essaouira/essaouira1.jpg',
+    ];
 
     const heroData = [
         {
@@ -132,7 +137,7 @@ export default function HomePage(props: HomePageProps) {
                         key={idx}
                         className={`absolute inset-0 transition-opacity duration-1000 ${idx === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                     >
-                        <div className="bg-dark absolute inset-0" style={{ opacity: heroData[idx].overlay_opacity }} />
+                        <div className="absolute inset-0 bg-dark" style={{ opacity: heroData[idx].overlay_opacity }} />
                         <img src={img} alt="" className="h-full w-full object-cover object-top" />
                     </div>
                 ))}
@@ -156,27 +161,27 @@ export default function HomePage(props: HomePageProps) {
                         </Link>
                     </div>
                 </div>
-                <div className="z-130 absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-2">
+                <div className="absolute bottom-8 left-1/2 z-130 flex -translate-x-1/2 gap-2">
                     {heroImages.map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => setCurrentSlide(idx)}
-                            className={`h-3 w-3 rounded-full  transition-all ${idx === currentSlide ? 'bg-accent w-8' : 'bg-dark/50'}`}
+                            className={`h-3 w-3 rounded-full transition-all ${idx === currentSlide ? 'w-8 bg-accent' : 'bg-dark/50'}`}
                         />
                     ))}
                 </div>
-                <div className="bg-gradient-to-top from-cream absolute bottom-0 left-0 right-0 h-24 to-transparent" />
+                <div className="bg-gradient-to-top absolute right-0 bottom-0 left-0 h-24 from-cream to-transparent" />
             </section>
 
             {/* Philosophy Strip */}
-            <section className="bg-primary mt-12 py-12 text-white">
+            <section className="mt-12 bg-primary py-12 text-white">
                 <div className="container-custom">
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                         {philosophyItems.map((item, idx) => (
                             <div key={idx} className="flex items-start gap-4">
                                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-white/10">
                                     {item.icon === 'leaf' && (
-                                        <svg className="text-accent h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -186,12 +191,12 @@ export default function HomePage(props: HomePageProps) {
                                         </svg>
                                     )}
                                     {item.icon === 'compass' && (
-                                        <svg className="text-accent h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                         </svg>
                                     )}
                                     {item.icon === 'recycle' && (
-                                        <svg className="text-accent h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -201,7 +206,7 @@ export default function HomePage(props: HomePageProps) {
                                         </svg>
                                     )}
                                     {item.icon === 'heart' && (
-                                        <svg className="text-accent h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -225,10 +230,10 @@ export default function HomePage(props: HomePageProps) {
             <section className="section-padding bg-cream">
                 <div className="container-custom">
                     <div className="mb-12 text-center">
-                        <h2 className="font-heading text-dark mb-4 text-4xl font-bold">
+                        <h2 className="font-heading mb-4 text-4xl font-bold text-dark">
                             {t('Experiencias que te marcarán', 'Experiences that will mark you')}
                         </h2>
-                        <p className="text-text-secondary mx-auto max-w-2xl">
+                        <p className="mx-auto max-w-2xl text-text-secondary">
                             {t('Descubre aventuras únicas en el mágico Marruecos', 'Discover unique adventures in magical Morocco')}
                         </p>
                     </div>
@@ -244,27 +249,27 @@ export default function HomePage(props: HomePageProps) {
                                     />
                                     {exp.badge && (
                                         <span
-                                            className="absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold text-white"
+                                            className="absolute top-4 left-4 rounded-full px-3 py-1 text-xs font-semibold text-white"
                                             style={{ backgroundColor: exp.badgeColor }}
                                         >
                                             {t(exp.badge_es, exp.badge_en)}
                                         </span>
                                     )}
-                                    <span className="text-dark absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold">
+                                    <span className="absolute top-4 right-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-dark">
                                         {exp.destination}
                                     </span>
                                 </div>
                                 <div className="p-6">
                                     <div className="mb-2 flex items-center gap-2">
-                                        <span className="text-accent text-sm">★</span>
-                                        <span className="text-text-secondary text-sm">
+                                        <span className="text-sm text-accent">★</span>
+                                        <span className="text-sm text-text-secondary">
                                             {exp.rating} ({exp.reviews} {t('reseñas', 'reviews')})
                                         </span>
                                     </div>
-                                    <h3 className="font-heading group-hover:text-primary mb-2 text-xl font-semibold transition-colors">
+                                    <h3 className="font-heading mb-2 text-xl font-semibold transition-colors group-hover:text-primary">
                                         {t(exp.title_es, exp.title_en)}
                                     </h3>
-                                    <div className="text-text-secondary mb-4 flex items-center gap-4 text-sm">
+                                    <div className="mb-4 flex items-center gap-4 text-sm text-text-secondary">
                                         <span className="flex items-center gap-1">
                                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path
@@ -274,7 +279,7 @@ export default function HomePage(props: HomePageProps) {
                                                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                                 />
                                             </svg>
-                                            {exp.duration}
+                                            {t(exp.duration_es, exp.duration_en)}
                                         </span>
                                         <span
                                             className={`rounded px-2 py-0.5 text-xs font-medium ${
@@ -292,9 +297,10 @@ export default function HomePage(props: HomePageProps) {
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <span className="text-text-secondary text-sm">{t('Desde', 'From')}</span>
-                                            <span className="text-primary ml-1 text-2xl font-bold">${exp.price_from_usd}</span>
-                                        </div>                                        <Link href={`/experiencias/${exp.slug}`} className="btn-outline py-2 text-sm">
+                                            <span className="text-sm text-text-secondary">{t('Desde', 'From')}</span>
+                                            <span className="ml-1 text-2xl font-bold text-primary">${exp.price_from_usd}</span>
+                                        </div>{' '}
+                                        <Link href={`/experiencias/${exp.slug}`} className="btn-outline py-2 text-sm">
                                             {t('Ver más', 'See more')}
                                         </Link>
                                     </div>
@@ -315,10 +321,10 @@ export default function HomePage(props: HomePageProps) {
             <section className="section-padding bg-cream-dark">
                 <div className="container-custom">
                     <div className="mb-12 text-center">
-                        <h2 className="font-heading text-dark mb-4 text-4xl font-bold">
+                        <h2 className="font-heading mb-4 text-4xl font-bold text-dark">
                             {t('¿A dónde quieres escapar?', 'Where do you want to escape?')}
                         </h2>
-                        <p className="text-text-secondary mx-auto max-w-2xl">
+                        <p className="mx-auto max-w-2xl text-text-secondary">
                             {t('Explora las ciudades más fascinantes de Marruecos', 'Explore the most fascinating cities of Morocco')}
                         </p>
                     </div>
@@ -331,8 +337,8 @@ export default function HomePage(props: HomePageProps) {
                                     alt={dest.name}
                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
-                                <div className="from-dark/80 via-dark/20 absolute inset-0 bg-gradient-to-t to-transparent" />
-                                <div className="absolute bottom-0 left-0 right-0 p-6">
+                                <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent" />
+                                <div className="absolute right-0 bottom-0 left-0 p-6">
                                     <h3 className="font-heading mb-1 text-2xl font-bold text-white">{dest.name}</h3>
                                     <p className="mb-2 text-sm text-white/80">{dest.tagline}</p>
                                     <div className="flex flex-wrap gap-2">
@@ -357,19 +363,19 @@ export default function HomePage(props: HomePageProps) {
                 <div className="container-custom">
                     <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
                         <div>
-                            <div className="font-heading text-accent mb-2 text-4xl font-bold md:text-5xl">500+</div>
+                            <div className="font-heading mb-2 text-4xl font-bold text-accent md:text-5xl">500+</div>
                             <div className="text-white/80">{t('Viajes realizados', 'Trips completed')}</div>
                         </div>
                         <div>
-                            <div className="font-heading text-accent mb-2 text-4xl font-bold md:text-5xl">98%</div>
+                            <div className="font-heading mb-2 text-4xl font-bold text-accent md:text-5xl">98%</div>
                             <div className="text-white/80">{t('Clientes satisfechos', 'Satisfied clients')}</div>
                         </div>
                         <div>
-                            <div className="font-heading text-accent mb-2 text-4xl font-bold md:text-5xl">8</div>
+                            <div className="font-heading mb-2 text-4xl font-bold text-accent md:text-5xl">8</div>
                             <div className="text-white/80">{t('Destinos', 'Destinations')}</div>
                         </div>
                         <div>
-                            <div className="font-heading text-accent mb-2 text-4xl font-bold md:text-5xl">15+</div>
+                            <div className="font-heading mb-2 text-4xl font-bold text-accent md:text-5xl">15+</div>
                             <div className="text-white/80">{t('Guías expertos', 'Expert guides')}</div>
                         </div>
                     </div>
@@ -396,14 +402,14 @@ export default function HomePage(props: HomePageProps) {
                             <div key={idx} className="bg-stone/20 rounded-xl p-6">
                                 <div className="mb-4 flex items-center gap-1">
                                     {[...Array(5)].map((_, i) => (
-                                        <svg key={i} className="text-accent h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg key={i} className="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                         </svg>
                                     ))}
                                 </div>
                                 <p className="mb-4 text-white/90">"{t(test.quote_es, test.quote_en)}"</p>
                                 <div className="flex items-center gap-3">
-                                    <div className="bg-primary flex h-10 w-10 items-center justify-center rounded-full">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary">
                                         <span className="text-lg">{test.flag}</span>
                                     </div>
                                     <div>
@@ -421,15 +427,15 @@ export default function HomePage(props: HomePageProps) {
             <section className="section-padding bg-cream">
                 <div className="container-custom">
                     <div className="mb-12 text-center">
-                        <h2 className="font-heading text-dark mb-4 text-4xl font-bold">{t('¿Por qué elegirnos?', 'Why choose us?')}</h2>
+                        <h2 className="font-heading mb-4 text-4xl font-bold text-dark">{t('¿Por qué elegirnos?', 'Why choose us?')}</h2>
                     </div>
 
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                         {whyUsData.map((item, idx) => (
                             <div key={idx} className="p-6 text-center">
-                                <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                                     {item.icon === 'users' && (
-                                        <svg className="text-primary h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -439,7 +445,7 @@ export default function HomePage(props: HomePageProps) {
                                         </svg>
                                     )}
                                     {item.icon === 'shield' && (
-                                        <svg className="text-primary h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -449,7 +455,7 @@ export default function HomePage(props: HomePageProps) {
                                         </svg>
                                     )}
                                     {item.icon === 'map' && (
-                                        <svg className="text-primary h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -459,7 +465,7 @@ export default function HomePage(props: HomePageProps) {
                                         </svg>
                                     )}
                                     {item.icon === 'leaf' && (
-                                        <svg className="text-primary h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -470,7 +476,7 @@ export default function HomePage(props: HomePageProps) {
                                     )}
                                 </div>
                                 <h3 className="font-heading mb-2 text-xl font-semibold">{t(item.title_es, item.title_en)}</h3>
-                                <p className="text-text-secondary text-sm">{t(item.description_es, item.description_en)}</p>
+                                <p className="text-sm text-text-secondary">{t(item.description_es, item.description_en)}</p>
                             </div>
                         ))}
                     </div>
@@ -481,7 +487,7 @@ export default function HomePage(props: HomePageProps) {
             <section className="section-padding bg-cream-dark">
                 <div className="container-custom">
                     <div className="mb-12 text-center">
-                        <h2 className="font-heading text-dark mb-4 text-4xl font-bold">
+                        <h2 className="font-heading mb-4 text-4xl font-bold text-dark">
                             {t('Inspiración para tu próximo viaje', 'Inspiration for your next trip')}
                         </h2>
                     </div>
@@ -495,18 +501,18 @@ export default function HomePage(props: HomePageProps) {
                                         alt={t(post.title_es, post.title_en)}
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
-                                    <span className="bg-primary absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold text-white">
+                                    <span className="absolute top-4 left-4 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
                                         {post.category}
                                     </span>
                                 </div>
                                 <div className="p-6">
-                                    <h3 className="font-heading group-hover:text-primary mb-2 text-lg font-semibold transition-colors">
+                                    <h3 className="font-heading mb-2 text-lg font-semibold transition-colors group-hover:text-primary">
                                         {t(post.title_es, post.title_en)}
                                     </h3>
-                                    <p className="text-text-secondary mb-4 line-clamp-2 text-sm">{t(post.excerpt_es, post.excerpt_en)}</p>
+                                    <p className="mb-4 line-clamp-2 text-sm text-text-secondary">{t(post.excerpt_es, post.excerpt_en)}</p>
                                     <div className="flex items-center justify-between">
                                         <span className="text-text-light text-sm">{post.readTime} min read</span>
-                                        <Link href={`/blog/${post.slug}`} className="text-primary text-sm font-medium hover:underline">
+                                        <Link href={`/blog/${post.slug}`} className="text-sm font-medium text-primary hover:underline">
                                             {t('Leer más', 'Read more')} →
                                         </Link>
                                     </div>
@@ -547,9 +553,7 @@ export default function HomePage(props: HomePageProps) {
 
                                 if (result.ok) {
                                     showNewsletterToast(setToast, {
-                                        message:
-                                            result.message ||
-                                            t('Te has suscrito al newsletter.', 'You have subscribed to the newsletter.'),
+                                        message: result.message || t('Te has suscrito al newsletter.', 'You have subscribed to the newsletter.'),
                                         type: 'success',
                                     });
                                     setNewsletterEmail('');
@@ -580,14 +584,12 @@ export default function HomePage(props: HomePageProps) {
                         <input
                             type="email"
                             placeholder={t('Tu correo electrónico', 'Your email address')}
-                            className="text-dark focus:ring-accent flex-1 rounded-lg bg-white px-4 py-3 focus:border-transparent focus:ring-2"
+                            className="flex-1 rounded-lg bg-white px-4 py-3 text-dark focus:border-transparent focus:ring-2 focus:ring-accent"
                             value={newsletterEmail}
                             onChange={(event) => setNewsletterEmail(event.target.value)}
                         />
                         <button type="submit" className="btn-secondary whitespace-nowrap" disabled={newsletterLoading}>
-                            {newsletterLoading
-                                ? t('Suscribiendo...', 'Subscribing...')
-                                : t('Suscribirme', 'Subscribe')}
+                            {newsletterLoading ? t('Suscribiendo...', 'Subscribing...') : t('Suscribirme', 'Subscribe')}
                         </button>
                     </form>
                     <p className="text-stone-light mt-4 text-sm">
@@ -598,7 +600,7 @@ export default function HomePage(props: HomePageProps) {
                     </p>
 
                     <details className="mx-auto mt-6 max-w-md text-left">
-                        <summary className="cursor-pointer text-sm text-stone-light underline-offset-2 hover:underline">
+                        <summary className="text-stone-light cursor-pointer text-sm underline-offset-2 hover:underline">
                             {t('Darte de baja de la lista', 'Unsubscribe from the list')}
                         </summary>
                         <form
@@ -617,10 +619,7 @@ export default function HomePage(props: HomePageProps) {
                                         showNewsletterToast(setToast, {
                                             message:
                                                 result.message ||
-                                                t(
-                                                    'Te has dado de baja del newsletter.',
-                                                    'You have been unsubscribed from the newsletter.',
-                                                ),
+                                                t('Te has dado de baja del newsletter.', 'You have been unsubscribed from the newsletter.'),
                                             type: 'success',
                                         });
                                         setUnsubscribeEmail('');
@@ -652,7 +651,7 @@ export default function HomePage(props: HomePageProps) {
                                 type="email"
                                 required
                                 placeholder={t('Correo suscrito', 'Subscribed email')}
-                                className="text-dark focus:ring-accent flex-1 rounded-lg bg-white px-4 py-3 text-sm focus:border-transparent focus:ring-2"
+                                className="flex-1 rounded-lg bg-white px-4 py-3 text-sm text-dark focus:border-transparent focus:ring-2 focus:ring-accent"
                                 value={unsubscribeEmail}
                                 onChange={(event) => setUnsubscribeEmail(event.target.value)}
                             />
@@ -661,9 +660,7 @@ export default function HomePage(props: HomePageProps) {
                                 className="rounded-lg border border-white/40 bg-transparent px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
                                 disabled={unsubscribeLoading}
                             >
-                                {unsubscribeLoading
-                                    ? t('Procesando...', 'Processing...')
-                                    : t('Darme de baja', 'Unsubscribe')}
+                                {unsubscribeLoading ? t('Procesando...', 'Processing...') : t('Darme de baja', 'Unsubscribe')}
                             </button>
                         </form>
                     </details>
@@ -702,7 +699,7 @@ const experiencesData = [
         badge_es: 'Más popular',
         badge_en: 'Most Popular',
         badgeColor: '#F4A261',
-        image: toubkal,
+        image: '/images/trekking-atlas/trekking-atlas1.webp',
     },
     {
         slug: 'desierto-merzouga',
@@ -721,7 +718,7 @@ const experiencesData = [
         badge_es: 'Top Rated',
         badge_en: 'Top Rated',
         badgeColor: '#2D6A4F',
-        image: merzouga,
+        image: '/images/merzouga/merzouga1.jpg',
     },
     {
         slug: 'tour-fez',
@@ -736,7 +733,7 @@ const experiencesData = [
         price_from_usd: 75,
         rating: 4.9,
         reviews: 89,
-        image: fes,
+        image: '/images/fes/fes1.webp',
     },
     {
         slug: 'essaouira',
@@ -751,7 +748,7 @@ const experiencesData = [
         price_from_usd: 65,
         rating: 4.7,
         reviews: 156,
-        image: essaouira,
+        image: '/images/essaouira/essaouira1.jpg',
     },
     {
         slug: 'tour-casablanca-rabat',
@@ -766,7 +763,7 @@ const experiencesData = [
         price_from_usd: 85,
         rating: 4.5,
         reviews: 32,
-        image: casaYRabat,
+        image: '/images/casa & rabat/casa1.jpg',
     },
     {
         slug: 'trekking-toubkal',
@@ -785,7 +782,7 @@ const experiencesData = [
         badge_es: 'Para expertos',
         badge_en: 'For experts',
         badgeColor: '#D62828',
-        image: tinghir,
+        image: '/images/merzouga/merzouga5.jpg',
     },
 ];
 
@@ -794,42 +791,42 @@ const destinationsData = [
         id: 'marrakech',
         name: 'Marrakech',
         tagline: 'La Ciudad Roja',
-        image: desMarrakeck,
+        image: '/images/marrakech/marrakech1.jpg',
         activities: ['Plaza Jemaa el-Fna', 'Medina', 'Jardín Majorelle'],
     },
     {
         id: 'fez',
         name: 'Fez',
         tagline: 'Ciudad Imperial',
-        image: desFes,
+        image: '/images/fes/fes1.webp',
         activities: ['Medina', 'Universidad', 'Tanneries'],
     },
     {
         id: 'casablanca',
         name: 'Casablanca',
         tagline: 'Ciudad Blanca',
-        image: desCasa,
+        image: '/images/casa & rabat/casa1.jpg',
         activities: ['Mezquita Hassan II', 'Corniche'],
     },
     {
         id: 'essaouira',
         name: 'Essaouira',
         tagline: 'Perla del Atlántico',
-        image: desEssaouira,
+        image: '/images/essaouira/essaouira1.jpg',
         activities: ['Puerto', 'Medina', 'Surf'],
     },
     {
         id: 'ouarzazate',
         name: 'Ouarzazate',
         tagline: 'Puerta del Desierto',
-        image: desOuarzazate,
+        image: '/images/ouarzazate/ourzazate1.webp',
         activities: ['Kasbah', 'Cine', 'Valle'],
     },
     {
         id: 'merzouga',
         name: 'Merzouga',
         tagline: 'Dunas de Erg Chebbi',
-        image: desMerzouga,
+        image: '/images/merzouga/merzouga1.jpg',
         activities: ['Desierto', 'Camel Trek', 'Amanecer'],
     },
 ];
@@ -902,7 +899,7 @@ const blogData = [
         title_es: 'Guía completa de Marrakech',
         title_en: 'Complete guide to Marrakech',
         category: 'Destinos',
-        image: bloMarrakech,
+        image: '/images/marrakech/marrakech1.jpg',
         excerpt_es: 'Todo lo que necesitas saber para visitar la Ciudad Roja.',
         excerpt_en: 'Everything you need to know to visit the Red City.',
         readTime: 8,
@@ -912,7 +909,7 @@ const blogData = [
         title_es: 'Trekking en el Alto Atlas',
         title_en: 'Trekking in the High Atlas',
         category: 'Aventura',
-        image: bloTrekking,
+        image: '/images/trekking-atlas/trekking-atlas1.webp',
         excerpt_es: 'Rutas y consejos para hacer trekking en las montañas del Atlas.',
         excerpt_en: 'Routes and tips for trekking in the Atlas mountains.',
         readTime: 10,
@@ -922,7 +919,7 @@ const blogData = [
         title_es: 'Vivir el desierto de Merzouga',
         title_en: 'Living the Merzouga desert',
         category: 'Experiencia',
-        image: bloMerzouga,
+        image: '/images/merzouga/merzouga1.jpg',
         excerpt_es: 'Una noche mágica en las dunas del Sáhara.',
         excerpt_en: 'A magical night in the Sahara dunes.',
         readTime: 6,
