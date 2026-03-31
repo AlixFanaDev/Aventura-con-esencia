@@ -1,9 +1,8 @@
 import { Head, useForm } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
-import Alert from '@/components/Alert';
 import FormError from '@/components/FormError';
+import Navbar from '@/components/Navbar';
 import SuccessCard from '@/components/SuccessCard';
 
 const heroImg = '/images/merzouga/merzouga2.jpg';

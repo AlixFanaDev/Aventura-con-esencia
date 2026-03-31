@@ -1,5 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
-import { FormEvent, useState, useEffect } from 'react';
+import type { FormEvent} from 'react';
+import { useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import NewsletterToast from '@/components/NewsletterToast';
