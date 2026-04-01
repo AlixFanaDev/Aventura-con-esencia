@@ -138,7 +138,7 @@ export default function HomePage(props: HomePageProps) {
                         className={`absolute inset-0 transition-opacity duration-1000 ${idx === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                     >
                         <div className="absolute inset-0 bg-dark" style={{ opacity: heroData[idx].overlay_opacity }} />
-                        <img src={img} alt="" className="h-full w-full object-cover object-top" />
+                        <img src={img} alt="" className="h-full w-full object-cover " />
                     </div>
                 ))}
                 ;
