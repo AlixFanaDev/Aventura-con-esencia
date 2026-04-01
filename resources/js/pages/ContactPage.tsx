@@ -229,7 +229,7 @@ export default function ContactPage(props: PageProps) {
                                         <div>
                                             <h3 className="mb-1 font-semibold text-dark">{t('Teléfono', 'Phone')}</h3>
                                             <a href="tel:+212661234567" className="text-earth transition-colors hover:text-primary">
-                                                +212 661 234 567
+                                                +212 667 974 915
                                             </a>
                                         </div>
                                     </div>
@@ -264,7 +264,7 @@ export default function ContactPage(props: PageProps) {
                                     {t('Escríbenos y te respondemos rápido', 'Write to us and we will respond quickly')}
                                 </p>
                                 <a
-                                    href="https://wa.me/212661234567"
+                                    href="https://wa.me/212667964915"
                                     className="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-all duration-200 hover:scale-105 hover:bg-cream hover:shadow-lg"
                                 >
                                     {t('Enviar mensaje', 'Send message')}
