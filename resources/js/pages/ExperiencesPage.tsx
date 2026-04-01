@@ -62,7 +62,7 @@ export default function ExperiencesPage(props: PageProps) {
             {/* Hero */}
             <section className="relative flex h-100 items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-dark z-10" style={{ opacity: 0.5 }} />
-                <img src="/images/all/anubhav-sonker-n_zto2eDb6s-unsplash.jpg" alt="Morocco" className="absolute inset-0 h-full w-full object-cover" />
+                <img src="/images/all/jeison-higuita-OTbsPvXlLoc-unsplash.jpg" alt="Morocco" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="relative z-10 text-center text-white">
                     <h1 className="mb-4 font-heading text-5xl font-bold">{t('Experiencias en Marruecos', 'Experiences in Morocco')}</h1>
                     <p className="mx-auto max-w-2xl text-xl">

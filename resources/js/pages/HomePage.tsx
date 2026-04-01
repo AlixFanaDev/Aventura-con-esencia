@@ -352,9 +352,11 @@ export default function HomePage(props: HomePageProps) {
                             </Link>
                         ))}
                     </div>
-                    <Link href="/destinos" className="mt-12 inline-block text-center text-primary">
-                        {t('Ver todos los destinos', 'View all destinations')}
-                    </Link>
+                    <div className="text-center mt-12">
+                        <Link href="/destinos" className="btn-primary">
+                            {t('Ver todos los destinos', 'View all destinations')}
+                        </Link>
+                    </div>
                 </div>
             </section>
 
@@ -782,7 +784,7 @@ const experiencesData = [
         badge_es: 'Para expertos',
         badge_en: 'For experts',
         badgeColor: '#D62828',
-        image: '/images/merzouga/merzouga5.jpg',
+        image: '/images/trekking-atlas/trekking-atlas22.jpg',
     },
 ];
 
